@@ -24,7 +24,9 @@ rootProject.allprojects {
             //url "https://rouninlabs.jfrog.io/artifactory/rounin-libs-external/"
             url "https://artifacts.rouninlabs.com/rounin-libs-external/"
         }
-        maven { url 'https://jitpack.io' }
+        flatDir {
+            dirs project(':another_brother').file('libs/brother_sdks/android')
+        }
     }
 }
 
@@ -59,6 +61,6 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
-    implementation 'com.github.johnvuko:BrotherPrintLibrary:4.13.1'
+    implementation(name: 'BrotherPrintLibrary', ext: 'aar')
     implementation 'com.brother.typeb:print:1.0.0'
 }
