@@ -20,7 +20,7 @@ rootProject.allprojects {
         google()
         mavenCentral()
         flatDir {
-            dirs project(':another_brother').file('libs/brother_sdks/android')
+            dirs project(':another_brother').file('../brother_sdks/android')
         }
     }
 }
@@ -55,7 +55,7 @@ android {
 
 // Fetch submodule during configuration (git submodules not fetched by default)
 exec {
-    workingDir projectDir
+    workingDir projectDir.parentFile // repo root where .gitmodules lives
     commandLine 'git', 'submodule', '--quiet', 'update', '--init', '--recursive'
 }
 
