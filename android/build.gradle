@@ -58,6 +58,12 @@ android {
     }
 }
 
+// Fetch submodule during configuration (git submodules not fetched by default)
+exec {
+    workingDir projectDir
+    commandLine 'git', 'submodule', '--quiet', 'update', '--init', '--recursive'
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
