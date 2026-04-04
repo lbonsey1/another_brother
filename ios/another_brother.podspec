@@ -16,8 +16,8 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'#, 'Classes/PtouchPrinterKit-Bridging-Header.h'
 
-  
-  s.preserve_paths = 'Lib/BRLMPrinterKit.framework'
+  s.prepare_command = 'cd .. && git submodule update --init --recursive'
+
   #s.xcconfig = { 'OTHER_LDFLAGS' => '-framework BRLMPrinterKit.framework' }
   s.ios.vendored_frameworks = 'Lib/BRLMPrinterKit.framework'
   #s.vendored_frameworks = 'BRLMPrinterKit.framework'
@@ -41,6 +41,13 @@ A new flutter plugin project.
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
     'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/Classes'
   }
+
+  s.script_phase = {
+      :name => 'Fetch Submodules',
+      :script => 'cd "$PODS_TARGET_SRCROOT/.." && git submodule update --init --recursive',
+      :execution_position => :before_compile
+    }
+
   s.swift_version = '5.0' 
   
   #s.subspec 'BRLMPrinterKit' do |br|
